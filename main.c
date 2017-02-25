@@ -15,6 +15,10 @@ int main(int argc, char **argv){
 	int width;	// La largeur
 	int height;	// La hauteur
 
+	x = 0;
+	y = 0;
+	width = 300;
+	height = 300;
 
 	// La colormap pour alouer les couleurs
 	Colormap screen_colormap;
@@ -32,14 +36,14 @@ int main(int argc, char **argv){
 	}
 
 	s = DefaultScreen(d);
-	w = XCreateSimpleWindow(d, RootWindow(d, s), 10, 10, 100, 100, 0,
+	w = XCreateSimpleWindow(d, RootWindow(d, s), x, y, width, height, 0,
 					BlackPixel(d, s), WhitePixel(d, s));
 	XSelectInput(d, w,  ExposureMask | KeyPressMask);
 	XMapWindow(d, w);
 
 	screen_colormap = DefaultColormap(d, s);
 	Status rc;
-	XParseColor(d, screen_colormap, "#00000000", &col);
+	XParseColor(d, screen_colormap, "#000000", &col);
 	XAllocColor(d, screen_colormap, &col);
 	while(1){
 		XNextEvent(d, &e);
