@@ -39,7 +39,7 @@ int main(int argc, char **argv){
 
 	screen_colormap = DefaultColormap(d, s);
 	Status rc;
-	XParseColor(d, screen_colormap, "#FFFFFF", &col);
+	XParseColor(d, screen_colormap, "#000000", &col);
 	XAllocColor(d, screen_colormap, &col);
 	while(1){
 		XNextEvent(d, &e);
