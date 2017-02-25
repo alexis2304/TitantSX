@@ -46,10 +46,10 @@ int main(int argc, char **argv){
 					BlackPixel(d, s), WhitePixel(d, s));
 	XSelectInput(d, w,  ExposureMask | KeyPressMask);
 	XMapWindow(d, w);
-	XSync(d, false);
+	//XSync(d, false);
 
 	imlib_context_set_dither(1);
-    imlib_context_set_display(disp);
+    imlib_context_set_display(d);
     imlib_context_set_visual(vis);
 
     image = imlib_load_image("./01_Home.jpg");
