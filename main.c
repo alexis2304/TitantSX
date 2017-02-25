@@ -6,10 +6,13 @@
 #include <X11/Xlib.h>
 #include <Imlib2.h>
 
+
 int main(int argc, char **argv){
 	Display *d;
 	Window w;
 	XEvent e;
+	Imlib_Image image;
+    Pixmap pix, mask;
 
 	int x;		// la position x
 	int y;		// La position y
@@ -41,6 +44,21 @@ int main(int argc, char **argv){
 					BlackPixel(d, s), WhitePixel(d, s));
 	XSelectInput(d, w,  ExposureMask | KeyPressMask);
 	XMapWindow(d, w);
+	XSync(d, false);
+
+	imlib_context_set_dither(1);
+    imlib_context_set_display(disp);
+    imlib_context_set_visual(vis);
+
+    image = imlib_load_image("./01_Home.jpg");
+    imlib_context_set_image(image);
+
+    pix = XCreatePixmap(disp, win, 1920, 1080, depth);
+    imlib_context_set_drawable(pix);
+    imlib_render_image_on_drawable_at_size(0, 0, 300, 300);
+
+    XSetWindowBackgroundPixmap(d, w, pix);
+    XClearWindow(d, w);
 
 	screen_colormap = DefaultColormap(d, s);
 	Status rc;
