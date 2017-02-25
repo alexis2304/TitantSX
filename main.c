@@ -5,20 +5,21 @@
 
 #include <X11/Xlib.h>
 
+//test
 int main(int argc, char **argv){
 	Display *d;
 	Window w;
 	XEvent e;
-	
+
 	int x;		// la position x
 	int y;		// La position y
 	int width;	// La largeur
-	int height;	// La hauteur	
+	int height;	// La hauteur
 
-	
+
 	// La colormap pour alouer les couleurs
 	Colormap screen_colormap;
-	
+
 	// Crée les valeur de couleurs
 	XColor col;
 
@@ -30,13 +31,13 @@ int main(int argc, char **argv){
 		fprintf(stderr, "Cannot open display\n");
 		exit(1);
 	}
-	
+
 	s = DefaultScreen(d);
 	w = XCreateSimpleWindow(d, RootWindow(d, s), 10, 10, 100, 100, 0,
 					BlackPixel(d, s), WhitePixel(d, s));
 	XSelectInput(d, w,  ExposureMask | KeyPressMask);
 	XMapWindow(d, w);
-	
+
 	screen_colormap = DefaultColormap(d, s);
 	Status rc;
 	XParseColor(d, screen_colormap, "#FFFFFF", &col);
