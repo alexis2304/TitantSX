@@ -40,7 +40,7 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	depth = DefaultDepth(d, DefaultScreen(d));
-	vis   = DefaultVisual(disp, DefaultScreen(disp));
+	vis   = DefaultVisual(d, DefaultScreen(d));
 	s = DefaultScreen(d);
 	w = XCreateSimpleWindow(d, RootWindow(d, s), x, y, width, height, 0,
 					BlackPixel(d, s), WhitePixel(d, s));
