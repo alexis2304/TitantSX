@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include <X11/Xlib.h>
-#include <Imlib2.h>
 
 
 int main(int argc, char **argv){
@@ -47,19 +46,6 @@ int main(int argc, char **argv){
 	XSelectInput(d, w,  ExposureMask | KeyPressMask);
 	XMapWindow(d, w);
 	//XSync(d, false);
-
-	imlib_context_set_dither(1);
-    imlib_context_set_display(d);
-    imlib_context_set_visual(vis);
-
-    image = imlib_load_image("./01_Home.jpg");
-    imlib_context_set_image(image);
-
-    pix = XCreatePixmap(d, w, 1920, 1080, depth);
-    imlib_context_set_drawable(pix);
-    imlib_render_image_on_drawable_at_size(0, 0, 300, 300);
-
-    XSetWindowBackgroundPixmap(d, w, pix);
     XClearWindow(d, w);
 
 	screen_colormap = DefaultColormap(d, s);
