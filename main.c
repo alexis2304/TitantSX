@@ -34,6 +34,8 @@ int main(int argc, char **argv){
 		fprintf(stderr, "Cannot open display\n");
 		exit(1);
 	}
+	width = DisplayWidth(d, 0);
+	height = DisplayHeight(d, 0);
 	s = DefaultScreen(d);
 	w = XCreateSimpleWindow(d, RootWindow(d, s), x, y, width, height, 0,
 					BlackPixel(d, s), WhitePixel(d, s));
@@ -43,9 +45,6 @@ int main(int argc, char **argv){
 
 	printf("Screen Width : %d\n", DisplayWidth(d, 0));
 	printf("Screen Height : %d\n", DisplayHeight(d, 0));
-
-	width = DisplayWidth(d, 0);
-	height = DisplayHeight(d, 0);
 
 	screen_colormap = DefaultColormap(d, s);
 	Status rc;
