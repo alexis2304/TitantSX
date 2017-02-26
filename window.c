@@ -34,7 +34,7 @@ void UpdateView(TWindow *w){
 
     XNextEvent(w->display, &w->event);
     while(i < count){
-		if(w->.event.type == Expose){
+		if(w->event.type == Expose){
             XParseColor(w->display, w->colormap, w->pixels[i].color, &col);
         	XAllocColor(w->display, w->colormap, &col);
 			XSetForeground(w->display, DefaultGC(w->display, w->screen), col.pixel);
