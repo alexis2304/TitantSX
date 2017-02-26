@@ -5,6 +5,8 @@
 
 #include <X11/Xlib.h>
 
+#include "window.h"
+
 
 int main(int argc, char **argv){
 	Display *d;
