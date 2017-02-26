@@ -10,6 +10,12 @@ typedef struct{
 }   Pixel;
 
 typedef struct{
+    Pixel *pixels;
+    int z_position;
+    ScreenObject* child;
+}   ScreenObject;
+
+typedef struct{
     int width;  // la largeur.
     int height; // la hauter.
 

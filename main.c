@@ -11,7 +11,8 @@
 int main(int argc, char **argv){
 	TWindow win;
 	TInitScreen(&win);
-
+	TImage *myimg = createImage(100, 100, 400, 300, 0);
+	showImage(myimg, win);
 	while(1){
 		UpdateView(&win);
 		if(win.event.type == KeyPress){
