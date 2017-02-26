@@ -39,9 +39,10 @@ int main(int argc, char **argv){
 					BlackPixel(d, s), WhitePixel(d, s));
 	XSelectInput(d, w,  ExposureMask | KeyPressMask);
 	XMapWindow(d, w);
-	//XSync(d, false);
     XClearWindow(d, w);
 
+	printf("Screen Width : %d\n", DisplayWidth(d, 0));
+	printf("Screen Height : %d\n", DisplayHeight(d, 0));
 	screen_colormap = DefaultColormap(d, s);
 	Status rc;
 	XParseColor(d, screen_colormap, "#000000", &col);
