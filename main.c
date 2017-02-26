@@ -9,11 +9,7 @@
 int main(int argc, char **argv){
 	Display *d;
 	Window w;
-	Visual *vis;
 	XEvent e;
-	Imlib_Image image;
-    Pixmap pix, mask;
-	int depth;
 	int x;		// la position x
 	int y;		// La position y
 	int width;	// La largeur
@@ -38,8 +34,6 @@ int main(int argc, char **argv){
 		fprintf(stderr, "Cannot open display\n");
 		exit(1);
 	}
-	depth = DefaultDepth(d, DefaultScreen(d));
-	vis   = DefaultVisual(d, DefaultScreen(d));
 	s = DefaultScreen(d);
 	w = XCreateSimpleWindow(d, RootWindow(d, s), x, y, width, height, 0,
 					BlackPixel(d, s), WhitePixel(d, s));
