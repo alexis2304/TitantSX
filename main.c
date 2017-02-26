@@ -21,7 +21,7 @@ int main(int argc, char **argv){
 		if(win.event.type == Expose){
 			XSetForeground(win.display, DefaultGC(win.display, win.screen), col.pixel);
 			//XFillRectangle(win.display, win.window, DefaultGC(win.display, win.screen), 20, 20, 10, 10);
-			XDrawPoint(win.display, col.pixel, DefaultGC(win.display, win.screen), 10, 10);
+			XDrawPoint(win.display, win.window, DefaultGC(win.display, win.screen), 10, 10);
 		}
 		if(win.event.type == KeyPress){
 			win.x++;
