@@ -9,6 +9,9 @@
 
 
 int main(int argc, char **argv){
+	TWindow win;
+	TInitScreen(&win);
+	/*
 	Display *d;
 	Window w;
 	XEvent e;
@@ -49,24 +52,26 @@ int main(int argc, char **argv){
 	printf("Screen Height : %d\n", DisplayHeight(d, 0));
 
 	screen_colormap = DefaultColormap(d, s);
+	*/
+	XColor col;
 	Status rc;
-	XParseColor(d, screen_colormap, "#000000", &col);
-	XAllocColor(d, screen_colormap, &col);
+	XParseColor(win.display, win.colormap, "#000000", &col);
+	XAllocColor(win.display, win.colormap, &col);
 	while(1){
-		XNextEvent(d, &e);
-		if(e.type == Expose){
-			XSetForeground(d, DefaultGC(d, s), col.pixel);
-			XFillRectangle(d, w, DefaultGC(d, s), 20, 20, 10, 10);
+		XNextEvent(win.display, &win.event);
+		if(win.event.type == Expose){
+			XSetForeground(win.display, DefaultGC(win.display, win.screen), col.pixel);
+			XFillRectangle(win.display, win.window, DefaultGC(win.display, win.screen), 20, 20, 10, 10);
 		}
-		if(e.type == KeyPress){
+		if(win.event.type == KeyPress){
 			x++;
-			XMoveWindow(d, w, x, y);
-			printf("Key %d pressed !\n", e.xkey.keycode);
-			if(e.xkey.keycode == 9)
+			XMoveWindow(win.display, win.window, x, y);
+			printf("Key %d pressed !\n", win.event.xkey.keycode);
+			if(win.event.xkey.keycode == 9)
 				break;
 		}
-		XFlush(d);
+		XFlush(win.display);
 	}
-	XCloseDisplay(d);
+	XCloseDisplay(win.display);
 	return 0;
 }
