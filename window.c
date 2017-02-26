@@ -15,8 +15,8 @@ void TInitScreen(TWindow *w){
     w->width = DisplayWidth(w->display, 0);
 	w->height = DisplayHeight(w->display, 0);
 
-    win->screen = DefaultScreen(w->display);
-	win->window = XCreateSimpleWindow(w->display, RootWindow(w->display, w->screen), w->x, w->y, w->width, w->height, 0,
+    w->screen = DefaultScreen(w->display);
+	w->window = XCreateSimpleWindow(w->display, RootWindow(w->display, w->screen), w->x, w->y, w->width, w->height, 0,
 					BlackPixel(w->display, w->screen), WhitePixel(w->display, w->screen));
 	XSelectInput(w->display, w->window,  ExposureMask | KeyPressMask);
 	XMapWindow(w->display, w->window);
