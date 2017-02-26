@@ -1,12 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "window.h"
+
+#include "../Headers/COSCore.h"
 
 /*  +-----------------------------+
     |Permet d'innitialiser l'ecran|
     +-----------------------------+
 */
-void TInitScreen(TWindow *w){
+void COSInitScreen(TWindow *w){
     w->display = XOpenDisplay(NULL);
     if(w->display == NULL){
 		fprintf(stderr, "Cannot open display\n");

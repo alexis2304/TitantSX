@@ -1,0 +1,40 @@
+
+Shéma du fonctionnement de l'OS :
+
++--------------------------------+
+|           LEGENDE              |
++--------------------------------+
+|                                |
+|   [...]   -> Structure         |
+|   (+-)    -> Sous Structure    |
+|                                |
++--------------------------------+
+
+
+[ECRAN]
+    +- [SCREEN]
+        +- [WOBJECT]
+            +- [CLASS...]   <- Ce ne sont pas vraiment des class vu que c'est pas de la POO.
+            +- [CLASS...]   <- Ce ne sont pas vraiment des class vu que c'est pas de la POO.
+        []
+    []
+[]
+
+Details :
+
+[ECRAN]
+Représente l'écran de l'ordinateur.
+
+[SCREEN]
+Représente le contenue de l'ecran. Ici [SCREEN] gère tout ce qui concerne l'affichage des [WOBJECT] a l'écran.
+Ici l'affichage se "low-level"  c'est a dire que ici la manipulation ce fait par pixel.
+
+[WOBJECT]
+Représente un object qui contient n'importe quel objets (image, text, annimation, etc...) c'est une fenetre en gros.
+Ici on et dans le "hight-level" c'est a dire qu'on manipule des pseudo-objet et non des pixel.
+
+Plus d'informations :
+Tout les objet doivent etre dans [WOBJECT] . C'est la super class en gros même si c'est pas encore de la POO vue que le code et en C.
+[WOBJECT] et une structure qui regroupe plusieurs objet (void *).
+
+[SCREEN] sert à gerer l'affichache du contenue de [WOBJECT] a l'écran selon leur valeurs (position, taille, etc...).

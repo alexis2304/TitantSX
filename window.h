@@ -21,17 +21,17 @@ typedef struct{
 }   OScreen;
 
 typedef struct{
-    int width;  // la largeur.
-    int height; // la hauter.
+    int width;              // la largeur.
+    int height;             // la hauter.
 
-    int x;  // la position x
-    int y;  // la position y
+    int x;                  // la position x.
+    int y;                  // la position y.
 
-    Display *display;       // Le display
-	Window window;          // la fenetere
-    int screen;          // l'ecran
-	XEvent event;               // Les evenetments
-    Colormap colormap;      // la colormap
+    Display *display;       // Le display.
+	Window window;          // la fenetere.
+    int screen;             // l'ecran.
+	XEvent event;           // Les evenetments.
+    Colormap colormap;      // la colormap.
     Pixel* pixels;
     int pixelscount;
 } TWindow;
