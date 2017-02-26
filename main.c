@@ -6,6 +6,7 @@
 #include <X11/Xlib.h>
 
 #include "window.h"
+#include "imageLib.h"
 
 
 int main(int argc, char **argv){
