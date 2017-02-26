@@ -18,6 +18,7 @@ TImage* createImage(int width, int height, int xp, int yp, int type){
     Pixel *pixels = malloc(sizeof(Pixel) * pixelSize);
     image->pixels = pixels;
     int x = 0;
+    int y = 0;
 
     // innitialise l'image avec la couleur noir
     while(y < height){
