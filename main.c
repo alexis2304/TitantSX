@@ -50,7 +50,7 @@ int main(int argc, char **argv){
 		XNextEvent(d, &e);
 		if(e.type == Expose){
 			XSetForeground(d, DefaultGC(d, s), col.pixel);
-			XFillRectangle(d, w, DefaultGC(d, s), 20, 20, 10, 10);
+			XFillRectangle(d, w, DefaultGC(d, s), 20, 20, 0, 0);
 		}
 		if(e.type == KeyPress){
 			x++;
