@@ -12,10 +12,6 @@ int main(int argc, char **argv){
 	TWindow win;
 	TInitScreen(&win);
 
-	XColor col;
-	Status rc;
-	XParseColor(win.display, win.colormap, "#000000", &col);
-	XAllocColor(win.display, win.colormap, &col);
 	while(1){
 		UpdateView(&win);
 		if(win.event.type == KeyPress){
