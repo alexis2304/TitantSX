@@ -33,7 +33,7 @@ TImage* createImage(int width, int height, int xp, int yp, int type){
     }
 }
 
-void showImage(TImage* img, TWindow *w){
+void showImage(TImage* img, TWindow* w){
     w->pixelscount = (img->width) * (img->height);
     w->pixels = img->pixels;
 }

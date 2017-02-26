@@ -12,6 +12,6 @@ typedef struct{
 } TImage;
 
 TImage* createImage(int width, int height, int xp, int yp, int type);
-void showImage(TImage* img, TWindow *w);
+void showImage(TImage* img, TWindow* w);
 
 #endif
