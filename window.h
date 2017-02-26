@@ -4,6 +4,12 @@
 #define WINDOW_H
 
 typedef struct{
+    int x;
+    int y;
+    char* color;
+}   Pixel;
+
+typedef struct{
     int width;  // la largeur.
     int height; // la hauter.
 
@@ -15,6 +21,8 @@ typedef struct{
     int screen;          // l'ecran
 	XEvent event;               // Les evenetments
     Colormap colormap;      // la colormap
+    Pixel* pixels;
+    int pixelscount;
 } TWindow;
 
 #endif

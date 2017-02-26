@@ -17,12 +17,7 @@ int main(int argc, char **argv){
 	XParseColor(win.display, win.colormap, "#000000", &col);
 	XAllocColor(win.display, win.colormap, &col);
 	while(1){
-		XNextEvent(win.display, &win.event);
-		if(win.event.type == Expose){
-			XSetForeground(win.display, DefaultGC(win.display, win.screen), col.pixel);
-			//XFillRectangle(win.display, win.window, DefaultGC(win.display, win.screen), 20, 20, 10, 10);
-			XDrawPoint(win.display, win.window, DefaultGC(win.display, win.screen), 10, 10);
-		}
+		UpdateView(&win);
 		if(win.event.type == KeyPress){
 			win.x++;
 			XMoveWindow(win.display, win.window, win.x, win.y);
@@ -30,7 +25,6 @@ int main(int argc, char **argv){
 			if(win.event.xkey.keycode == 9)
 				break;
 		}
-		XFlush(win.display);
 	}
 	XCloseDisplay(win.display);
 	return 0;

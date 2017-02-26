@@ -3,9 +3,9 @@
 #include "window.h"
 
 /*
-** -----------------------------
-** Permet d'innitialiser l'ecran
-** -----------------------------
+** +-----------------------------+
+** |Permet d'innitialiser l'ecran|
+** +-----------------------------+
 */
 void TInitScreen(TWindow *w){
     w->display = XOpenDisplay(NULL);
@@ -24,4 +24,24 @@ void TInitScreen(TWindow *w){
 	XMapWindow(w->display, w->window);
     XClearWindow(w->display, w->window);
     w->colormap = DefaultColormap(w->display, w->screen);
+    w->pixelscount = 0;
+}
+
+void UpdateView(TWindow *w){
+    int count = w->pixelscount;
+    int i = 0;
+    XColor col;
+
+    XNextEvent(w->display, &w->event);
+    while(i < count){
+		if(w->.event.type == Expose){
+            XParseColor(win.display, win.colormap, w->pixels[i].color, &col);
+        	XAllocColor(win.display, win.colormap, &col);
+			XSetForeground(w->display, DefaultGC(w->display, w->screen), col.pixel);
+			XDrawPoint(w->display, w->window, DefaultGC(w->display, w->screen), w->pixels[i].x, w->pixels[i].y);
+		}
+        XFlush(w->display);
+        i++;
+    }
+
 }
