@@ -10,7 +10,7 @@
 **
 */
 TImage* createImage(int width, int height, int xp, int yp, int type){
-    TImage *image;
+    TImage *image = malloc(sizeof(TImage) * 1);
     image->width = width;
     image->height = height;
     image->type = type;
