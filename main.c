@@ -64,8 +64,8 @@ int main(int argc, char **argv){
 			XFillRectangle(win.display, win.window, DefaultGC(win.display, win.screen), 20, 20, 10, 10);
 		}
 		if(win.event.type == KeyPress){
-			x++;
-			XMoveWindow(win.display, win.window, x, y);
+			win.x++;
+			XMoveWindow(win.display, win.window, win.x, win.y);
 			printf("Key %d pressed !\n", win.event.xkey.keycode);
 			if(win.event.xkey.keycode == 9)
 				break;
