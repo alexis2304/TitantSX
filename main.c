@@ -55,7 +55,9 @@ int main(int argc, char **argv){
 		if(e.type == KeyPress){
 			x++;
 			XMoveWindow(d, w, x, y);
-			printf("Key %d pressed !", e.xkey.keycode);
+			printf("Key %d pressed !\n", e.xkey.keycode);
+			if(e.xkey.keycode == 9)
+				break;
 		}
 		XFlush(d);
 	}
