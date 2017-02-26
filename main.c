@@ -43,6 +43,10 @@ int main(int argc, char **argv){
 
 	printf("Screen Width : %d\n", DisplayWidth(d, 0));
 	printf("Screen Height : %d\n", DisplayHeight(d, 0));
+
+	width = DisplayWidth(d, 0);
+	height = DisplayHeight(d, 0);
+
 	screen_colormap = DefaultColormap(d, s);
 	Status rc;
 	XParseColor(d, screen_colormap, "#000000", &col);
