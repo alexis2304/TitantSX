@@ -25,4 +25,7 @@ typedef struct{
     int pixelscount;
 } TWindow;
 
+void TInitScreen(TWindow *w);
+void UpdateView(TWindow *w);
+
 #endif
