@@ -21,5 +21,5 @@ void TInitScreen(TWindow *w){
 	XSelectInput(w->display, w->window,  ExposureMask | KeyPressMask);
 	XMapWindow(w->display, w->window);
     XClearWindow(w->display, w->window);
-    w->colormap = DefaultColormap(w->display, d->screen);
+    w->colormap = DefaultColormap(w->display, w->screen);
 }
