@@ -48,7 +48,7 @@ typedef struct{
 	XEvent event;           // Les evenetments.
     Colormap colormap;      // la colormap.
 
-    COSWobject* wobject;    // Les objets qui s'affcherons.
+    COSWobject** wobject;    // Les objets qui s'affcherons.
     int wobjectLenght;
 
 } COSScreen;
