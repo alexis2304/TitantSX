@@ -7,7 +7,7 @@
     |Permet d'innitialiser l'ecran|
     +-----------------------------+
 */
-void COSInitScreen(COSScreen *c){
+void COSInit(COSScreen *c){
     c->display = XOpenDisplay(NULL);
     if(c->display == NULL){
 		fprintf(stderr, "Cannot open display\n");
