@@ -50,6 +50,7 @@ typedef struct{
 
     COSWobject** wobject;    // Les objets qui s'affcherons.
     COSPixel *pixels;
+    int pixelscount;
     int wobjectLenght;
 
 } COSScreen;
