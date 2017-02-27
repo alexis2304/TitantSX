@@ -49,6 +49,7 @@ typedef struct{
     Colormap colormap;      // la colormap.
 
     COSWobject** wobject;    // Les objets qui s'affcherons.
+    COSPixel *pixels;
     int wobjectLenght;
 
 } COSScreen;

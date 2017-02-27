@@ -5,8 +5,6 @@
 
 #include <X11/Xlib.h>
 
-//#include "window.h"
-//#include "imageLib.h"
 #include "Core/Headers/COSCore.h"
 
 int main(int argc, char **argv){
