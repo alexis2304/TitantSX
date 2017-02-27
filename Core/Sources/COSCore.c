@@ -57,9 +57,9 @@ void COSUpdateView(COSScreen *c){
     -----------------------------------------
 */
 void COSInitWobject(int isActive, COSWobject * w, COSScreen * c){
-    COSWobject * temp;
+    COSWobject ** temp;
 
-    temp = realloc(c->wobject, sizeof(COSWobject) * (c->wobjectLenght + 1));
+    temp = realloc(c->wobject, sizeof(COSWobject *) * (c->wobjectLenght + 1));
     if(temp == NULL){
         fprintf(stderr,"Reallocation impossible");
         free(c->wobject);
