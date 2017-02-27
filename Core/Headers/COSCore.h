@@ -12,21 +12,28 @@ typedef struct{
     char* color;            // La couleur du pixel. Doit etre sous forme Hexadecimal (#000000) plus facile pour le programmeur.
 }   COSPixel;
 
-/*
-    La structure d'un WOBJECT, ici c'est un objet qui contiendra d'autre objets
-    et a partir de celui ci on pourra afficher tout son contenue.
+
+
+/*  +---------------------------------------------------------------------------+
+    |La structure d'un WOBJECT, ici c'est un objet qui contiendra d'autre objet |
+    |et a partir de celui ci on pourra afficher tout son contenue.              |
+    +---------------------------------------------------------------------------+
 */
 typedef struct{
     COSPixel *pixels;       // Les le rendu total en pixel.
     int z_position;         // La position z et la profondeur. (permet de superposer deux ou plusieurs COSWobject).
     char *name;             // Le nom du COSWobject, permet de le retrouver.
+    int *types;             // Les types des sous objets
     int id;                 // L'id pour permetre de le retrouver plus facilement.
-    void *childs;           // Les sous objets.
+    void **childs;          // Les sous objets.
 }   COSWobject;
 
-/*
-    La strucutre de l'ecran. C'est elle qui contiendra les information pour gérer l'ecran
-    ainsi que tout ce qui concerne l'affichage.
+
+
+/*  +-------------------------------------------------------------------------------------+
+    |La strucutre de l'ecran. C'est elle qui contiendra les information pour gérer l'ecran|
+    |ainsi que tout ce qui concerne l'affichage.                                          |
+    +-------------------------------------------------------------------------------------+
 */
 typedef struct{
     int width;              // la largeur.
@@ -42,13 +49,16 @@ typedef struct{
     Colormap colormap;      // la colormap.
 
     COSWobject* wobject;    // Les objets qui s'affcherons.
+    int wobjectLenght;
 
 } COSScreen;
+
+
 
 /*
     Les fonctions
 */
-void COSInit(COSScreen *c);     // Cette fonction permet d'innitialiser l'os.
-void UpdateView(COSScreen *c);  // Cette fonction permet de metre a jour l'affichage a l'écran.
-
+void COSInit(COSScreen *c);         // Cette fonction permet d'innitialiser l'os.
+void COSUpdateView(COSScreen *c);   // Cette fonction permet de metre a jour l'affichage a l'écran.
+void COSInitWobject(int isActive, COSWobject * w, COSScreen * c);   // Permet d'innitialiser un COSWobject.
 #endif

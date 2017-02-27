@@ -7,44 +7,72 @@
     |Permet d'innitialiser l'ecran|
     +-----------------------------+
 */
-void COSInitScreen(TWindow *w){
-    w->display = XOpenDisplay(NULL);
-    if(w->display == NULL){
+void COSInitScreen(COSScreen *c){
+    c->display = XOpenDisplay(NULL);
+    if(c->display == NULL){
 		fprintf(stderr, "Cannot open display\n");
 		exit(1);
 	}
     // On innitialise la taille de l'écran
-    w->width = DisplayWidth(w->display, 0);
-	w->height = DisplayHeight(w->display, 0);
+    c->width = DisplayWidth(c->display, 0);
+	c->height = DisplayHeight(c->display, 0);
 
-    w->screen = DefaultScreen(w->display);
-	w->window = XCreateSimpleWindow(w->display, RootWindow(w->display, w->screen), w->x, w->y, w->width, w->height, 0,
-					BlackPixel(w->display, w->screen), WhitePixel(w->display, w->screen));
-	XSelectInput(w->display, w->window,  ExposureMask | KeyPressMask);
-	XMapWindow(w->display, w->window);
-    XClearWindow(w->display, w->window);
-    w->colormap = DefaultColormap(w->display, w->screen);
-    w->pixelscount = 0;
+    c->screen = DefaultScreen(c->display);
+	c->window = XCreateSimpleWindow(c->display, RootWindow(c->display, c->screen), c->x, c->y, c->width, c->height, 0,
+					BlackPixel(c->display, c->screen), WhitePixel(c->display, c->screen));
+	XSelectInput(c->display, c->window,  ExposureMask | KeyPressMask);
+	XMapWindow(c->display, c->window);
+    XClearWindow(c->display, c->window);
+    c->colormap = DefaultColormap(c->display, c->screen);
+    c->pixelscount = 0;
+    c->wobject = NULL;  // Innitialisations des objets a null
+    c->wobjectLenght = 0;
 }
 
 /*  +------------------------------------------+
     |Permet de metre à jour la vue du conteneur|
     +------------------------------------------+
 */
-void UpdateView(TWindow *w){
-    int count = w->pixelscount;
+void COSUpdateView(COSScreen *c){
+    int count = c->pixelscount;
     int i = 0;
     XColor col;
 
-    XNextEvent(w->display, &w->event);
+    XNextEvent(c->display, &c->event);
     while(i < count){
-		if(w->event.type == Expose){
-            XParseColor(w->display, w->colormap, w->pixels[i].color, &col);
-        	XAllocColor(w->display, w->colormap, &col);
-			XSetForeground(w->display, DefaultGC(w->display, w->screen), col.pixel);
-			XDrawPoint(w->display, w->window, DefaultGC(w->display, w->screen), w->pixels[i].x, w->pixels[i].y);
+		if(c->event.type == Expose){
+            XParseColor(c->display, c->colormap, c->pixels[i].color, &col);
+        	XAllocColor(c->display, c->colormap, &col);
+			XSetForeground(c->display, DefaultGC(c->display, c->screen), col.pixel);
+			XDrawPoint(c->display, c->window, DefaultGC(c->display, c->screen), c->pixels[i].x, c->pixels[i].y);
 		}
-        XFlush(w->display);
+        XFlush(c->display);
         i++;
     }
+}
+
+
+/*  -----------------------------------------
+    Innitialise un nouvelle element COSWobjet
+    -----------------------------------------
+*/
+void COSInitWobject(int isActive, COSWobject * w, COSScreen * c){
+    COSWobject * temp;
+
+    temp = realloc(c->wobject, sizeof(COSWobject) * (c->wobjectLenght + 1));
+    if(temp == NULL){
+        fprintf(stderr,"Reallocation impossible");
+        free(c->wobject);
+        exit(EXIT_FAILURE);
+    }
+    c->wobject = temp;
+    c->wobjectLenght = c->wobjectLenght + 1;
+    
+    w->id = c->wobjectLenght - 1;
+    char buffer[20];
+    char *_name = {'_', 'O', 'B', 'J', itoa(w->id, buffer, 10)};
+    w->name = _name;
+    w->types = NULL;
+
+    c->wobject[w->id] = w;
 }

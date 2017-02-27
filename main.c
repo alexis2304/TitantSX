@@ -5,25 +5,24 @@
 
 #include <X11/Xlib.h>
 
-#include "window.h"
-#include "imageLib.h"
-
+//#include "window.h"
+//#include "imageLib.h"
+#include "Core/Headers/COSCore.h"
 
 int main(int argc, char **argv){
-	TWindow win;
-	TInitScreen(&win);
-	TImage *myimg = createImage(100, 100, 400, 300, 0);
-	showImage(myimg, &win);
+	COSScreen screen;
+	COSInit(&screen);
+	
 	while(1){
-		UpdateView(&win);
-		if(win.event.type == KeyPress){
-			win.x++;
-			XMoveWindow(win.display, win.window, win.x, win.y);
-			printf("Key %d pressed !\n", win.event.xkey.keycode);
-			if(win.event.xkey.keycode == 9)
+		COSUpdateView(&screen);
+		if(screen.event.type == KeyPress){
+			screen.x++;
+			XMoveWindow(screen.display, screen.window, screen.x, screen.y);
+			printf("Key %d pressed !\n", screen.event.xkey.keycode);
+			if(screen.event.xkey.keycode == 9)
 				break;
 		}
 	}
-	XCloseDisplay(win.display);
+	XCloseDisplay(screen.display);
 	return 0;
 }
